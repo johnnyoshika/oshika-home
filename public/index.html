@@ -6,6 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Oshika Home</title>
   <style>
+    .hidden {
+      display: none;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+    }
+    .overlay-image {
+      width: 100%;
+    }
     .slidecontainer {
       width: 100%;
     }
@@ -47,6 +61,9 @@
   <script src="/__/firebase/init.js"></script>
 </head>
 <body>
+  <div id="overlay" class="overlay hidden">
+    <img src="/family.jpg" class="overlay-image" />
+  </div>
   <h3>LED 17</h3>
   <div class="slidecontainer">
     <input type="range" min="0" max="100" value="0" class="slider" id="led17">
@@ -79,6 +96,10 @@
         updateSlider('17', snap.data().led17 * 100);
         updateSlider('27', snap.data().led27 * 100);
       });
+
+      deviceRef.onSnapshot(snap => {
+        document.querySelector('#overlay').style.display = snap.data().button2 ? 'block' : 'none';
+      })
     }());
   </script>
 </body>
