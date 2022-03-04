@@ -2,6 +2,8 @@
 
 ## Dev
 
+Checkout `local` branch.
+
 Replace reserved URL Firebase config with CDN:
 
 ```
